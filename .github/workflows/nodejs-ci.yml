@@ -1,4 +1,4 @@
-name: CI/CD de Node.js + HTML con GitHub Pages
+name: CI/CD con Tests y GitHub Pages
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write  # requerido por GitHub Pages
+  id-token: write
 
 concurrency:
   group: "pages"
@@ -33,9 +33,6 @@ jobs:
 
     - name: Ejecutar tests
       run: node test.js
-
-    - name: Copiar index.js a dist/
-      run: cp index.js dist/
 
     - name: Notificar a Slack si fallan los tests
       if: failure()
@@ -62,14 +59,18 @@ jobs:
     - name: Checkout del código
       uses: actions/checkout@v4
 
+    # Copiar index.js al directorio dist/ para uso en el navegador
+    - name: Copiar index.js a dist/
+      run: cp index.js dist/
+
     - name: Configurar Pages
       uses: actions/configure-pages@v5
 
-    - name: Subir artefacto
+    - name: Subir artefacto de GitHub Pages
       uses: actions/upload-pages-artifact@v3
       with:
         path: dist
 
-    - name: Publicar en GitHub Pages
+    - name: Desplegar a GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
