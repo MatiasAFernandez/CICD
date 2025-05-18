@@ -1,4 +1,4 @@
-name: CI/CD de Node.js con alerta Slack
+name: CI/CD de Node.js + HTML con GitHub Pages
 
 on:
   push:
@@ -25,7 +25,6 @@ jobs:
     - name: Ejecutar tests
       run: node test.js
 
-    # Este paso se ejecuta sólo si el paso anterior falla
     - name: Notificar a Slack si fallan los tests
       if: failure()
       env:
@@ -33,9 +32,23 @@ jobs:
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data "{
-        \"text\": \"❌ Fallaron los tests en *${{ github.repository }}*\n
-        • Autor: ${{ github.actor }}\n
-        • Mensaje del commit: $(git log -1 --pretty=%B)\n
-        • Enlace al commit: ${COMMIT_URL}\"
+          \"text\": \"❌ Fallaron los tests en *${{ github.repository }}*\n
+          • Autor: ${{ github.actor }}\n
+          • Mensaje del commit: $(git log -1 --pretty=%B)\n
+          • Enlace al commit: ${COMMIT_URL}\"
         }" \
         ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Publicar en GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
