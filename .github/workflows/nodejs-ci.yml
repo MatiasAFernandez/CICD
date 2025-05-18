@@ -27,8 +27,15 @@ jobs:
 
     # Este paso se ejecuta sólo si el paso anterior falla
     - name: Notificar a Slack si fallan los tests
-      if: failure()  # solo si falla algo antes
+      if: failure()
+      env:
+        COMMIT_URL: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
       run: |
         curl -X POST -H 'Content-type: application/json' \
-        --data '{"text":"❌ Fallaron los tests en GitHub Actions para *${{ github.repository }}* en el commit `${{ github.sha }}`"}' \
+        --data "{
+        \"text\": \"❌ Fallaron los tests en *${{ github.repository }}*\n
+        • Autor: ${{ github.actor }}\n
+        • Mensaje del commit: $(git log -1 --pretty=%B)\n
+        • Enlace al commit: ${COMMIT_URL}\"
+        }" \
         ${{ secrets.SLACK_WEBHOOK_URL }}
