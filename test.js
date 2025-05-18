@@ -2,5 +2,5 @@
 import assert from 'assert';
 import { sumar } from './index.js';
 
-assert.strictEqual(sumar(2, 3), 5);
+assert.strictEqual(sumar(2, 3), 6);
 console.log("✅ Test pasado correctamente");
