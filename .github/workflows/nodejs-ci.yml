@@ -6,6 +6,15 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write  # requerido por GitHub Pages
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -42,13 +51,27 @@ jobs:
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     - name: Checkout del código
       uses: actions/checkout@v4
 
-    - name: Publicar en GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
+    - name: Crear archivos del sitio
+      run: |
+        mkdir -p dist
+        echo "<h1>🚀 Entrega Continua Activa desde GitHub Actions</h1>" > dist/index.html
+
+    - name: Configurar Pages
+      uses: actions/configure-pages@v5
+
+    - name: Subir artefacto
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+        path: dist
+
+    - name: Publicar en GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
