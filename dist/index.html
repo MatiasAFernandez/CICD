@@ -3,15 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <title>CI/CD con GitHub Pages</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    input {
+      width: 50px;
+      padding: 0.25rem;
+      text-align: center;
+    }
+    button {
+      margin-left: 1rem;
+      padding: 0.5rem 1rem;
+    }
+    #resultado {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h1>🚀 Integración y Entrega Continua</h1>
-  <p id="resultado">Cargando resultado...</p>
+  <h1>🚀 Entrega Continua Activa</h1>
+
+  <p>Ingresa dos números para sumarlos:</p>
+  <input type="number" id="num1" value="0" />
+  +
+  <input type="number" id="num2" value="0" />
+  <button id="sumarBtn">Sumar</button>
+
+  <p id="resultado">El resultado aparecerá aquí.</p>
 
   <script type="module">
     import { sumar } from './index.js';
-    document.getElementById("resultado").textContent =
-      `El resultado de sumar 2 + 3 es: ${sumar(2, 3)}`;
+
+    document.getElementById('sumarBtn').addEventListener('click', () => {
+      const a = parseFloat(document.getElementById('num1').value);
+      const b = parseFloat(document.getElementById('num2').value);
+      const resultado = sumar(a, b);
+
+      document.getElementById('resultado').textContent =
+        `El resultado de sumar ${a} + ${b} es: ${resultado}`;
+    });
   </script>
 </body>
 </html>
