@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>CI/CD con GitHub Actions</title>
+  <meta charset="UTF-8" />
+  <title>CI/CD con GitHub Pages</title>
 </head>
 <body>
   <h1>🚀 Entrega Continua Activa</h1>
-  <p>Este sitio se despliega automáticamente con GitHub Pages.</p>
+  <p id="resultado">Cargando resultado...</p>
+
+  <!-- Importar el módulo directamente -->
+  <script type="module">
+    import { sumar } from '../index.js';
+
+    const resultado = sumar(2, 3);
+    document.getElementById("resultado").textContent = `El resultado de sumar 2 + 3 es: ${resultado}`;
+  </script>
 </body>
 </html>

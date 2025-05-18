@@ -34,6 +34,9 @@ jobs:
     - name: Ejecutar tests
       run: node test.js
 
+    - name: Copiar index.js a dist/
+      run: cp index.js dist/
+
     - name: Notificar a Slack si fallan los tests
       if: failure()
       env:
@@ -58,11 +61,6 @@ jobs:
     steps:
     - name: Checkout del código
       uses: actions/checkout@v4
-
-    - name: Crear archivos del sitio
-      run: |
-        mkdir -p dist
-        echo "<h1>🚀 Entrega Continua Activa desde GitHub Actions</h1>" > dist/index.html
 
     - name: Configurar Pages
       uses: actions/configure-pages@v5
