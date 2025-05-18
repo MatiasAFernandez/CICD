@@ -10,6 +10,8 @@ Este proyecto demuestra una implementación simple de Integración Continua (CI)
 
 ## 📦 Estructura del Proyecto
 
+```text
+.
 ├── index.js # Función JavaScript reutilizable (ES Module)
 ├── test.js # Pruebas básicas en Node.js
 ├── dist/
@@ -17,7 +19,8 @@ Este proyecto demuestra una implementación simple de Integración Continua (CI)
 │ └── index.js # (Se genera automaticamente para github page)
 └── .github/
     └── workflows/
-        └── ci-cd.yml # Workflow CI/CD
+       └── ci-cd.yml # Workflow CI/CD
+```
 
 ---
 
