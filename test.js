@@ -1,6 +1,6 @@
-const assert = require('assert');
-const suma = require('./index');
+// test.js
+import assert from 'assert';
+import { sumar } from './index.js';
 
-// Prueba simple
-assert.strictEqual(suma(2, 3), 5);
-console.log("✅ Test pasado");
+assert.strictEqual(sumar(2, 3), 5);
+console.log("✅ Test pasado correctamente");
