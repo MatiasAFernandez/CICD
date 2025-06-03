@@ -74,3 +74,17 @@ jobs:
     - name: Desplegar a GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
+
+    - name: Notificar a Slack si el despliegue fue exitoso
+      if: success()
+      env:
+        COMMIT_URL: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+        --data "{
+          \"text\": \"✅ *Despliegue exitoso en GitHub Pages* para el repositorio *${{ github.repository }}* 🚀\n
+          • Autor: ${{ github.actor }}\n
+          • Mensaje del commit: $(git log -1 --pretty=%B)\n
+          • Enlace al commit: ${COMMIT_URL}\"
+        }" \
+        ${{ secrets.SLACK_WEBHOOK_URL }}
