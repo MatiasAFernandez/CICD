@@ -12,11 +12,13 @@ Este proyecto demuestra una implementación simple de Integración Continua (CI)
 
 ```text
 .
-├── index.js # Función JavaScript reutilizable (ES Module)
+├── src/ 
+    └── main.js # Función JavaScript reutilizable (ES Module)
 ├── test.js # Pruebas básicas en Node.js
+├── index.js # Página HTML que muestra el resultado
 ├── dist/
-│ ├── index.html # Página HTML que muestra el resultado
-│ └── index.js # (Se genera automaticamente para github page)
+│ ├── index.html # (Se genera automaticamente para github page) 
+│ └── main.js # (Se genera automaticamente para github page)
 └── .github/
     └── workflows/
        └── ci-cd.yml # Workflow CI/CD
@@ -41,9 +43,10 @@ Este proyecto demuestra una implementación simple de Integración Continua (CI)
 ### 🚀 Entrega Continua (CD)
 
 - Si las pruebas pasan:
-  - Se copia `index.js` a la carpeta `dist/` (para uso web)
+  - Se realiza la build del proyecto
   - Se publica automáticamente el contenido de `dist/` en **GitHub Pages**
   - El enlace de despliegue se actualiza automáticamente
+  - Se notifica por slack el despliegue exitoso
 
 ---
 
@@ -56,7 +59,7 @@ https://matiasafernandez.github.io/CICD/
 
 ## 📡 Notificaciones a Slack
 
-Este proyecto envía mensajes a Slack si fallan las pruebas.
+Este proyecto envía mensajes a Slack si fallan las pruebas y si fueron exitosas.
 
 ---
 
