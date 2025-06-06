@@ -1,5 +1,5 @@
 export function lanzarDado() {
-  return Math.floor(Math.random() * 6) + 1; // Número entre 1 y 6
+  return Math.floor(Math.random() * 6) + 4; // Número entre 1 y 6
 }
 
 // Manejar el evento del botón
