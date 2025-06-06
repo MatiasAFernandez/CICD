@@ -3,7 +3,8 @@ export function lanzarDado() {
 }
 
 // Manejar el evento del botón
-document.getElementById('lanzar').addEventListener('click', () => {
-  const resultado = lanzarDado();
-  document.getElementById('resultado').textContent = `Resultado: ${resultado}`;
-});
+if (typeof document !== 'undefined') {
+  document.getElementById('lanzar').addEventListener('click', () => {
+    const resultado = lanzarDado();
+    document.getElementById('resultado').textContent = `Resultado: ${resultado}`;
+  })};
