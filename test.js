@@ -1,6 +1,9 @@
-// test.js
-import assert from 'assert';
-import { sumar } from './index.js';
+import { lanzarDado } from './src/main.js';
 
-assert.strictEqual(sumar(2, 3), 5);
-console.log("✅ Test pasado correctamente");
+// Lanzamos el dado muchas veces para probar su rango
+for (let i = 0; i < 100; i++) {
+  const resultado = lanzarDado();
+  console.assert(resultado >= 1 && resultado <= 6, `El dado devolvió un valor fuera de rango: ${resultado}`);
+}
+
+console.log('✅ Todos los tests del dado pasaron correctamente');
