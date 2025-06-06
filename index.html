@@ -3,11 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dado Virtual</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #4facfe, #00f2fe); /* Fondo degradado azul */
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+    h1 {
+      color: #2c3e50; /* Azul oscuro para el título */
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    p#resultado {
+      color: #e74c3c; /* Rojo para el resultado */
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
+    button#lanzar {
+      background-color: #27ae60; /* Verde para el botón */
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+    button#lanzar:hover {
+      background-color: #219653; /* Verde más oscuro al pasar el mouse */
+      transform: scale(1.05);
+    }
+    button#lanzar:active {
+      transform: scale(0.95);
+    }
+  </style>
 </head>
 <body>
-  <h1>🎲 Lanza el dado</h1>
-  <p id="resultado">Haz clic para lanzar el dado</p>
-  <button id="lanzar">Lanzar</button>
+  <div class="container">
+    <h1>🎲 Lanza el dado</h1>
+    <p id="resultado">Haz clic para lanzar el dado</p>
+    <button id="lanzar">Lanzar</button>
+  </div>
 
   <script type="module" src="/src/main.js"></script>
 </body>
