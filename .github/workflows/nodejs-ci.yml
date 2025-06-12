@@ -44,7 +44,7 @@ jobs:
           \"text\": \"❌ Fallaron los tests en *${{ github.repository }}*\n
           • Autor: ${{ github.actor }}\n
           • Mensaje del commit: $(git log -1 --pretty=%B)\n
-          • Enlace al commit: ${COMMIT_URL}\""
+          • Enlace al commit: ${COMMIT_URL}\"
         }" \
         ${{ secrets.SLACK_WEBHOOK_URL }}
 
@@ -89,9 +89,9 @@ jobs:
       run: |
         curl -X POST -H 'Content-type: application/json' \
         --data "{
-          \"text\": \"✅ *Despliegue exitoso con build de Vite usando Bun* en *${{ github.repository }}* 🚀\n
+          \"text\": \"✅ *Despliegue exitoso con build de Vite* en *${{ github.repository }}* 🚀\n
           • Autor: ${{ github.actor }}\n
           • Mensaje del commit: $(git log -1 --pretty=%B)\n
-          • Enlace al commit: ${COMMIT_URL}\""
+          • Enlace al commit: ${COMMIT_URL}\"
         }" \
         ${{ secrets.SLACK_WEBHOOK_URL }}
