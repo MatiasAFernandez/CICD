@@ -1,6 +1,6 @@
 import { lanzarDado } from './src/main.js';
 
-// Track test failures
+// Rastrea fallas
 let failed = false;
 
 // Lanzamos el dado muchas veces para probar su rango
@@ -12,7 +12,7 @@ for (let i = 0; i < 100; i++) {
   }
 }
 
-// Check if any test failed
+// Salida en caso de fallos
 if (failed) {
   throw new Error('Uno o más tests fallaron: el dado devolvió valores fuera del rango 1-6');
 }
